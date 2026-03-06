@@ -18,7 +18,7 @@ class GreetingAgentExecutor(AgentExecutor):
     async def execute(self, context: RequestContext, event_queue: EventQueue):
         """Execute the greeting request and send a message to the event queue."""
         greeting_message = await self.agent.invoke()
-        event_queue.enqueue_event(new_agent_text_message(greeting_message))
+        await event_queue.enqueue_event(new_agent_text_message(greeting_message))
     
     async def cancel(self, context: RequestContext, event_queue: EventQueue):
         raise NotImplementedError("Cancellation is not implemented for GreetingAgentExecutor.")

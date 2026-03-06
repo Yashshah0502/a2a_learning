@@ -5,6 +5,7 @@ from a2a.server.tasks import InMemoryTaskStore
 from a2a.types import AgentCapabilities, AgentCard, AgentSkill
 from agent_executor import GreetingAgentExecutor
 
+
 def main():
     #Will define the skills of the agent
     skills = AgentSkill(
@@ -37,10 +38,10 @@ def main():
     # Wil create the server
     server = A2AStarletteApplication(
         agent_card=card,
-        request_handler=req_handler
+        http_handler=req_handler
     )
 
-    uvicorn.run(server, host="0.0.0.0", port=9999)
+    uvicorn.run(server.build(), host="0.0.0.0", port=9999)
 
 if __name__ == "__main__":    
     main()
